@@ -22,7 +22,7 @@ link_skills_into() {
     case "$resolved" in
       "$REPO"|"$REPO"/*)
         echo "error: $dest is a symlink into this repo ($resolved)." >&2
-        echo "Remove it (rm \"$dest\") and re-run; the script will recreate it as a real dir." >&2
+        echo "Remove it (rm \"$dest\") and re-run; the script will recreates it as a real dir." >&2
         exit 1
         ;;
     esac
@@ -45,7 +45,7 @@ link_skills_into() {
 
     ln -sfn "$src" "$target"
     echo "linked $name -> $src in $dest"
-  done < <(find "$REPO/skills" -name SKILL.md -not -path '*/node_modules/*' -print0)
+  done < <(find "$REPO/skills" -name SKILL.md -not -path '*/node_modules/*' -not -path '*/deprecated/*' -not -path '*/in-progress/*' -print0)
 
   if [ -n "$backup" ]; then
     echo "backed up replaced skills to $backup"
