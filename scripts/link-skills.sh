@@ -5,8 +5,7 @@ set -euo pipefail
 # installer for upstream mattpocock/skills.
 #
 # Link the published skills into the local directories used by Claude Code and
-# Codex. Personal skills are retained for this fork; deprecated and in-progress
-# skills are intentionally excluded.
+# Codex. Deprecated and in-progress skills are intentionally excluded.
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 DESTS=(
@@ -26,7 +25,6 @@ done < <(
     "$REPO/skills/engineering" \
     "$REPO/skills/productivity" \
     "$REPO/skills/misc" \
-    "$REPO/skills/personal" \
     -name SKILL.md -not -path '*/node_modules/*' -print0
 )
 
